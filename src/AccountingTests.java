@@ -14,6 +14,7 @@ public class AccountingTests {
 	@Test
 	public void no_budgets() {
 
+		budgetRepository.SetBudgets(asList());
 		totalAmountShouldBe(0, LocalDate.of(2010, 4, 1), LocalDate.of(2010, 4, 1));
 	}
 
