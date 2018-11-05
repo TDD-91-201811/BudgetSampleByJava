@@ -26,17 +26,14 @@ public class Period {
 			return 0;
 		}
 
-		LocalDate overlappingStart = start;
-		if (budget.firstDay().isAfter(start)) {
-			overlappingStart = budget.firstDay();
-		}
+		LocalDate overlappingStart = budget.firstDay().isAfter(start)
+				? budget.firstDay()
+				: start;
 
-		LocalDate effectiveEnd = end;
-		if (budget.lastDay().isBefore(end)) {
-			effectiveEnd = budget.lastDay();
-		}
+		LocalDate effectiveEnd = budget.lastDay().isBefore(end)
+				? budget.lastDay()
+				: end;
 
-		long days = DAYS.between(overlappingStart, effectiveEnd) + 1;
-		return days;
+		return DAYS.between(overlappingStart, effectiveEnd) + 1;
 	}
 }
