@@ -20,18 +20,14 @@ public class Period {
 		return end;
 	}
 
-	public Double overlappingDays(Budget budget) {
-		if (getStart().isAfter(budget.lastDay())) {
+	public long overlappingDays(Budget budget) {
+		if (getStart().isAfter(budget.lastDay()) || getEnd().isBefore(budget.firstDay())) {
 
-			return 0d;
-		}
-
-		if (getEnd().isBefore(budget.firstDay())) {
-			return 0d;
+			return 0;
 		}
 
 		long days = getDays();
-		return (double) days;
+		return days;
 	}
 
 	private long getDays() {
