@@ -3,6 +3,8 @@ import java.time.YearMonth;
 import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
 
+import static java.time.YearMonth.parse;
+
 public class Budget {
 	private String yearMonth;
 	private int amount;
@@ -13,7 +15,11 @@ public class Budget {
 	}
 
 	public LocalDate firstDay() {
-		YearMonth yearMonth = YearMonth.parse(this.yearMonth, DateTimeFormatter.ofPattern("yyyyMM"));
+		YearMonth yearMonth = getYearMonth();
 		return yearMonth.atDay(1);
+	}
+
+	private YearMonth getYearMonth() {
+		return parse(this.yearMonth, DateTimeFormatter.ofPattern("yyyyMM"));
 	}
 }
