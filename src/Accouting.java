@@ -20,6 +20,6 @@ public class Accouting {
 		Period period = new Period(start, end);
 		Budget budget = budgets.get(0);
 
-		return (double) period.overlappingDays(budget);
+		return (double) period.overlappingDays(new Period(budget.firstDay(), budget.lastDay()));
 	}
 }
