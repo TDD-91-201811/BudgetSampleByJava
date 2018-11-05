@@ -18,8 +18,11 @@ public class Accouting {
 		}
 
 		Period period = new Period(start, end);
-		Budget budget = budgets.get(0);
 
-		return budget.getOverlappingAmount(period);
+		double totalAmount = 0d;
+		for (Budget budget : budgets) {
+			totalAmount += budget.getOverlappingAmount(period);
+		}
+		return totalAmount;
 	}
 }
