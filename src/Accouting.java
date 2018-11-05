@@ -1,7 +1,7 @@
+import joey.Period;
+
 import java.time.LocalDate;
 import java.util.List;
-
-import static java.time.temporal.ChronoUnit.DAYS;
 
 public class Accouting {
 	private IRepository<Budget> budgetRepository;
@@ -18,7 +18,7 @@ public class Accouting {
 			return 0d;
 		}
 
-		long days = DAYS.between(start, end) + 1;
+		long days = new Period(start, end).getDays();
 		return (double) days;
 	}
 }
