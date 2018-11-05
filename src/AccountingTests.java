@@ -65,6 +65,27 @@ public class AccountingTests {
 				, LocalDate.of(2010, 4, 2));
 	}
 
+	@Test
+	public void invalid_period() {
+
+		givenBudgets(new Budget("201004", 300));
+		totalAmountShouldBe(0
+				, LocalDate.of(2010, 4, 3)
+				, LocalDate.of(2010, 4, 2));
+	}
+
+	@Test
+	public void multiple_budgets() {
+
+		givenBudgets(
+				new Budget("201004", 300),
+				new Budget("201005", 31));
+
+		totalAmountShouldBe(12
+				, LocalDate.of(2010, 4, 30)
+				, LocalDate.of(2010, 5, 2));
+	}
+
 	private void givenBudgets(Budget... budgets) {
 		budgetRepository.SetBudgets(asList(budgets));
 	}
