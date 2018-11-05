@@ -31,7 +31,12 @@ public class Period {
 			overlappingStart = budget.firstDay();
 		}
 
-		long days = DAYS.between(overlappingStart, getEnd()) + 1;
+		LocalDate effectiveEnd = end;
+		if (budget.lastDay().isBefore(end)) {
+			effectiveEnd = budget.lastDay();
+		}
+
+		long days = DAYS.between(overlappingStart, effectiveEnd) + 1;
 		return days;
 	}
 }
