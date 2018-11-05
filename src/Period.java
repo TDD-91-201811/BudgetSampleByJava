@@ -26,11 +26,12 @@ public class Period {
 			return 0;
 		}
 
-		long days = getDays();
-		return days;
-	}
+		LocalDate overlappingStart = start;
+		if (budget.firstDay().isAfter(start)) {
+			overlappingStart = budget.firstDay();
+		}
 
-	private long getDays() {
-		return DAYS.between(getStart(), getEnd()) + 1;
+		long days = DAYS.between(overlappingStart, getEnd()) + 1;
+		return days;
 	}
 }
