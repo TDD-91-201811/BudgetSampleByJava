@@ -38,6 +38,15 @@ public class AccountingTests {
 		totalAmountShouldBe(0, LocalDate.of(2010, 5, 1), LocalDate.of(2010, 5, 1));
 	}
 
+	@Test
+	public void period_overlapping_budget_firstDay() {
+
+		givenBudgets(new Budget("201004", 30));
+		totalAmountShouldBe(1
+				, LocalDate.of(2010, 3, 31)
+				, LocalDate.of(2010, 4, 1));
+	}
+
 	private void givenBudgets(Budget... budgets) {
 		budgetRepository.SetBudgets(asList(budgets));
 	}
