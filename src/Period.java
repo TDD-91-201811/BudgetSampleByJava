@@ -1,4 +1,3 @@
-package joey;
 
 import java.time.LocalDate;
 
@@ -21,7 +20,21 @@ public class Period {
 		return end;
 	}
 
-	public long getDays() {
+	public Double overlappingDays(Budget budget) {
+		if (getStart().isAfter(budget.lastDay())) {
+
+			return 0d;
+		}
+
+		if (getEnd().isBefore(budget.firstDay())) {
+			return 0d;
+		}
+
+		long days = getDays();
+		return (double) days;
+	}
+
+	private long getDays() {
 		return DAYS.between(getStart(), getEnd()) + 1;
 	}
 }

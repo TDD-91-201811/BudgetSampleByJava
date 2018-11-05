@@ -1,4 +1,3 @@
-import joey.Period;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -21,16 +20,6 @@ public class Accouting {
 		Period period = new Period(start, end);
 		Budget budget = budgets.get(0);
 
-		if (period.getStart().isAfter(budget.lastDay())) {
-
-			return 0d;
-		}
-
-		if (period.getEnd().isBefore(budget.firstDay())) {
-			return 0d;
-		}
-
-		long days = period.getDays();
-		return (double) days;
+		return period.overlappingDays(budget);
 	}
 }
