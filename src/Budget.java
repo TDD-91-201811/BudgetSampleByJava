@@ -19,6 +19,10 @@ public class Budget {
 		return yearMonth.atDay(1);
 	}
 
+	public LocalDate lastDay() {
+		return getYearMonth().atEndOfMonth();
+	}
+
 	private YearMonth getYearMonth() {
 		return parse(this.yearMonth, DateTimeFormatter.ofPattern("yyyyMM"));
 	}

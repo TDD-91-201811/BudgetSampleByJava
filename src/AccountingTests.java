@@ -25,10 +25,17 @@ public class AccountingTests {
 	}
 
 	@Test
-	public void period_no_overlapping_before_budget_month() {
+	public void period_no_overlapping_before_budget_firstDay() {
 
 		givenBudgets(new Budget("201004", 30));
 		totalAmountShouldBe(0, LocalDate.of(2010, 3, 31), LocalDate.of(2010, 3, 31));
+	}
+
+	@Test
+	public void period_no_overlapping_after_budget_lastDay() {
+
+		givenBudgets(new Budget("201004", 30));
+		totalAmountShouldBe(0, LocalDate.of(2010, 5, 1), LocalDate.of(2010, 5, 1));
 	}
 
 	private void givenBudgets(Budget... budgets) {

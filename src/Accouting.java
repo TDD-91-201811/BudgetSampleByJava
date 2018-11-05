@@ -20,6 +20,12 @@ public class Accouting {
 
 		Period period = new Period(start, end);
 		Budget budget = budgets.get(0);
+
+		if (period.getStart().isAfter(budget.lastDay())) {
+
+			return 0d;
+		}
+
 		if (period.getEnd().isBefore(budget.firstDay())) {
 			return 0d;
 		}
