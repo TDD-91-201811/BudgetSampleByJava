@@ -30,4 +30,12 @@ public class Budget {
 	public Period createPeriod() {
 		return new Period(firstDay(), lastDay());
 	}
+
+	public Integer days() {
+		return this.getYearMonth().lengthOfMonth();
+	}
+
+	public Integer getAmount() {
+		return amount;
+	}
 }

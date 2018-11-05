@@ -56,6 +56,15 @@ public class AccountingTests {
 				, LocalDate.of(2010, 5, 1));
 	}
 
+	@Test
+	public void budget_daily_amount_is_10() {
+
+		givenBudgets(new Budget("201004", 300));
+		totalAmountShouldBe(20
+				, LocalDate.of(2010, 4, 1)
+				, LocalDate.of(2010, 4, 2));
+	}
+
 	private void givenBudgets(Budget... budgets) {
 		budgetRepository.SetBudgets(asList(budgets));
 	}
