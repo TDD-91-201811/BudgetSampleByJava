@@ -20,8 +20,15 @@ public class AccountingTests {
 	@Test
 	public void period_inside_budget_month() {
 
-		givenBudgets(new Budget("201804", 30));
+		givenBudgets(new Budget("201004", 30));
 		totalAmountShouldBe(1, LocalDate.of(2010, 4, 1), LocalDate.of(2010, 4, 1));
+	}
+
+	@Test
+	public void period_no_overlapping_before_budget_month() {
+
+		givenBudgets(new Budget("201004", 30));
+		totalAmountShouldBe(0, LocalDate.of(2010, 3, 31), LocalDate.of(2010, 3, 31));
 	}
 
 	private void givenBudgets(Budget... budgets) {
