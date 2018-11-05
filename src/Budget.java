@@ -38,4 +38,8 @@ public class Budget {
 	public Integer getAmount() {
 		return amount;
 	}
+
+	public double getDailyAmount() {
+		return (double) (getAmount() / days());
+	}
 }
