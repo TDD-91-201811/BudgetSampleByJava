@@ -1,6 +1,7 @@
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Accouting {
 	private IRepository<Budget> budgetRepository;
@@ -11,18 +12,11 @@ public class Accouting {
 	}
 
 	public Double TotalAmount(LocalDate start, LocalDate end) {
-		List<Budget> budgets = budgetRepository.getAll();
-		if (budgets.isEmpty()) {
-
-			return 0d;
-		}
 
 		Period period = new Period(start, end);
 
-		double totalAmount = 0d;
-		for (Budget budget : budgets) {
-			totalAmount += budget.getOverlappingAmount(period);
-		}
-		return totalAmount;
+		return budgetRepository.getAll().stream()
+				.mapToDouble(budget -> budget.getOverlappingAmount(period))
+				.sum();
 	}
 }
