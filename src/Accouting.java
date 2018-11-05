@@ -6,7 +6,7 @@ public class Accouting {
 
 	}
 
-	public BigDecimal TotalAmount(LocalDate start, LocalDate end) {
-		return null;
+	public Double TotalAmount(LocalDate start, LocalDate end) {
+		return 0d;
 	}
 }
